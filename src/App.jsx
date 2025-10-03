@@ -1,50 +1,67 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import loginImage from "./assets/kucing.jpg"
 
-function App() {
-  const [count, setCount] = useState(0);
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Email:", email);
+    console.log("Password:", password);
+    // tambahkan logika login di sini
+  };
 
   return (
-    <>
-      <div className="min-h-screen bg-blue-400 flex flex-col items-center justify-center text-center">
-        <div className="flex items-center justify-center space-x-8 mb-12">
-          <a href="https://vite.dev" target="_blank">
-            <img
-              src={viteLogo}
-              className="m-24 h-24 animate-ping"
-              alt="Vite logo"
-              style={{ animationDuration: "10s" }}
-            />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img
-              src={reactLogo}
-              className="m-24 h-24 animate-ping"
-              alt="React logo"
-              style={{ animationDuration: "10s" }}
-            />
-          </a>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="grid grid-cols-2 bg-white rounded-lg shadow-lg overflow-hidden w-[800px]">
+        {/* Bagian Kiri - Gambar */}
+        <div className="flex items-center justify-center bg-gray-300">
+          <img
+            src={loginImage}
+            alt="Login Illustration"
+            className="object-cover w-full h-full"
+          />
         </div>
-        <h1 className="text-white text-8xl font-bold mb-16">Vite + React</h1>
-        <div className="text-sm space-y-6 mb-8">
-          <button
-            onClick={() => setCount((count) => count + 1)}
-            className="bg-blue-900 text-white py-2 px-6 rounded-lg text-lg"
-          >
-            count is {count}
-          </button>
-          <p className="text-white">
-            Edit <code>src/App.jsx</code> and save to test HMR
-          </p>
+
+        {/* Bagian Kanan - Form */}
+        <div className="flex flex-col items-center justify-center p-8">
+          <h2 className="text-2xl font-bold mb-6">Login</h2>
+          <form onSubmit={handleSubmit} className="w-full max-w-sm">
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Email</label>
+              <input
+                type="email"
+                placeholder="Masukkan email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2">Password</label>
+              <input
+                type="password"
+                placeholder="Masukkan password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-900 transition duration-200"
+            >
+              Login
+            </button>
+          </form>
         </div>
-        <p className="text-white">
-          Click on the Vite and React logos to learn more
-        </p>
       </div>
-    </>
+    </div>
   );
 }
 
-export default App;
+export default Login;
